@@ -3,7 +3,8 @@ package com.application.se2.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import com.application.se2.misc.Logger;
+import com.application.se2.AppConfigurator.LoggerTopics;
 import com.application.se2.misc.IDGenerator;
 
 
@@ -18,6 +19,7 @@ public class Customer implements Entity {
 
 	private static final IDGenerator CustomerIdGenerator
 		= new IDGenerator( "K", IDGenerator.IDTYPE.NUM, 6 );
+	Logger loger=Logger.getInstance(Customer.class);
 
 	/*
 	 * Entity Properties.
@@ -45,6 +47,7 @@ public class Customer implements Entity {
 	 */
 	public Customer( final String name ) {
 		this( null, name );
+		loger.log(LoggerTopics.Info,"message "+name,this);
 	}
 
 	/**
@@ -60,6 +63,7 @@ public class Customer implements Entity {
 		this.notes = new ArrayList<Note>();
 		this.created = new Date();
 		this.status = Status.ACT;
+		
 	}
 
 

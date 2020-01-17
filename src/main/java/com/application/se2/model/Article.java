@@ -1,7 +1,8 @@
 package com.application.se2.model;
 
+import com.application.se2.AppConfigurator.LoggerTopics;
 import com.application.se2.misc.IDGenerator;
-
+import com.application.se2.misc.Logger;
 
 /**
  * Article is an Entity-class that represents an article.
@@ -14,6 +15,8 @@ public class Article implements Entity {
 
 	private static final IDGenerator ArticleIdGenerator
 		= new IDGenerator( "P", IDGenerator.IDTYPE.NUM, 8 );
+	Logger loger=Logger.getInstance(Article.class);
+
 
 	/*
 	 * Entity Properties.
@@ -32,6 +35,8 @@ public class Article implements Entity {
 	 */
 	public Article( final String name, final String price ) {
 		this( null, name, price );
+		
+		loger.log(LoggerTopics.Info,"adding class "+name+ "price "+price,this);
 	}
 
 	/**
@@ -98,6 +103,23 @@ public class Article implements Entity {
 	public Article setPrice( final String price ) {
 		this.price = price;
 		return this;
+	}
+	// das muss nicht mit gramcht werden
+	/*
+	 *  Erstellen Sie einen Test, dass bei Angabe eines negativen Preises,
+	 *  z.B. “‐9,99 EUR“ die Angabe bei  “0,00 EUR“ bleibt*/
+	
+	public int   check_price(int betrag) {
+		
+		if(betrag <0) {
+			System.out.println("der price bleibt null");
+			betrag=0;
+		}
+		else {
+			System.out.println("der price ist pk");
+			
+		}
+		return betrag;
 	}
 
 }
